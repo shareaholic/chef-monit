@@ -10,8 +10,7 @@ if platform?("ubuntu")
 end
 
 service "monit" do
-  action [:enable, :start]
-  enabled true
+  action :enable
   supports [:start, :restart, :stop]
 end
 
