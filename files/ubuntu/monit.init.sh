@@ -150,7 +150,7 @@ case "$1" in
       log_end_msg 0
     else
       log_end_msg 1
-	fi
+  fi
     ;;
   restart|force-reload)
     $0 stop

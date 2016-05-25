@@ -7,11 +7,20 @@ if platform?("ubuntu")
     group "root"
     mode 0644
   end
+
+  # Working init script, fix for: https://bugs.launchpad.net/ubuntu/+source/monit/+bug/993381
+  if node.platform_version.to_f == 12.04
+    cookbook_file "/etc/init.d/monit" do
+      source "monit.init.sh"
+      owner "root"
+      group "root"
+      mode 0755
+    end
+  end
 end
 
 service "monit" do
-  action [:enable, :start]
-  enabled true
+  action :enable
   supports [:start, :restart, :stop]
 end
 
